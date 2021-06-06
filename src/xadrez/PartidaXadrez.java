@@ -1,5 +1,6 @@
 package xadrez;
 
+import tabuleirodojogo.Peca;
 import tabuleirodojogo.Posicao;
 import tabuleirodojogo.Tabuleiro;
 import xadrez.pecas.Rei;
@@ -23,13 +24,44 @@ public class PartidaXadrez {
 		return mat;
 	}
 	
+	public PecaXadrez acaoMoverXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
+		Posicao origem = posicaoOrigem.novaPosicao();
+		Posicao destino = posicaoDestino.novaPosicao();
+		validarPosicaoDeOrigem(origem);
+		Peca capturarPeca = fazerMovimento(origem, destino);
+		return (PecaXadrez) capturarPeca;
+	}
+	
+	private Peca fazerMovimento(Posicao origem, Posicao destino) {
+		Peca p = tabuleiro.removerPeca(origem);
+		Peca pecaCapturada = tabuleiro.removerPeca(destino);
+		tabuleiro.posicaoDaPeca(p, destino);
+		return pecaCapturada;
+	}
+
+	private void validarPosicaoDeOrigem(Posicao posicao) {
+		if (!tabuleiro.existeUmaPeca(posicao)) {
+			throw new XadrezException("Não há peça na posição selecionada.");
+		}
+	}
+
 	private void localDaNovaPeca(char coluna, int linha, PecaXadrez peca) {
 		tabuleiro.posicaoDaPeca(peca, new PosicaoXadrez(coluna, linha).novaPosicao());
 	}
 	
 	private void iniciarPartida() {
-		localDaNovaPeca('b', 6, new Torre(tabuleiro, Cor.BRANCO));
-		localDaNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
-		localDaNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+		localDaNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));
+		localDaNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCO));
+		localDaNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCO));
+		localDaNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
+		localDaNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCO));
+		localDaNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
+
+		localDaNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETO));
+		localDaNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETO));
+		localDaNovaPeca('d', 7, new Torre(tabuleiro, Cor.PRETO));
+		localDaNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETO));
+		localDaNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETO));
+		localDaNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
 	}
 }
