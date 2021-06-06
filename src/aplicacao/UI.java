@@ -1,9 +1,9 @@
 package aplicacao;
 
-import xadrez.PecaDeXadrez;
+import xadrez.PecaXadrez;
 
 public class UI {
-	public static void imprimirTabuleiro(PecaDeXadrez[][] pecas) {
+	public static void imprimirTabuleiro(PecaXadrez[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) { // Esta sendo utilizado length em consideracao de uma matriz quadrada
 			System.out.print((8 - i) + " ");
 			for (int j = 0; j < pecas.length; j ++) {
@@ -14,7 +14,7 @@ public class UI {
 		System.out.println("  a b c d e f g h");
 	}
 	
-	private static void imprimirPeca(PecaDeXadrez peca) {
+	private static void imprimirPeca(PecaXadrez peca) {
 		if (peca == null) {
 			System.out.print("-");
 		} else {

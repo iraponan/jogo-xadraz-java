@@ -1,13 +1,13 @@
 package aplicacao;
 
-import xadrez.PartidaDeXadrez;
+import xadrez.PartidaXadrez;
 
 public class Programa {
 
 	public static void main(String[] args) {
 
-		PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();
-		UI.imprimirTabuleiro(partidaDeXadrez.getPecas());
+		PartidaXadrez partidaXadrez = new PartidaXadrez();
+		UI.imprimirTabuleiro(partidaXadrez.getPecas());
 	}
 
 }
