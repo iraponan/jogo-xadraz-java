@@ -30,6 +30,12 @@ public class UI {
 	public static final String ANSI_FUNDO_CIANO = "\u001B[46m";
 	public static final String ANSI_FUNDO_BRANCO = "\u001B[47m";
 
+	// https://stackoverflow.com/questions/2979383/java-clear-the-console
+	public static void limparTela() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+
 	public static PosicaoXadrez lerPosicaoXadrez(Scanner sc) {
 		try {
 			String s = sc.nextLine();
@@ -37,8 +43,9 @@ public class UI {
 			int linha = Integer.parseInt(s.substring(1));
 			return new PosicaoXadrez(coluna, linha);
 		} catch (RuntimeException e) {
-			throw new InputMismatchException("Erro na leitura da posição do Xadrez: Somente valores do a1 ao h8 são permitidos.");
-			
+			throw new InputMismatchException(
+					"Erro na leitura da posição do Xadrez: Somente valores do a1 ao h8 são permitidos.");
+
 		}
 	}
 
