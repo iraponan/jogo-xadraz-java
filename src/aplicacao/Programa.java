@@ -19,7 +19,7 @@ public class Programa {
 		while (true) {
 			try {
 				UI.limparTela();
-				UI.imprimirTabuleiro(partidaXadrez.getPecas());
+				UI.imprimirPartida(partidaXadrez);
 				
 				System.out.println();
 				System.out.print("Posição: ");
@@ -28,8 +28,6 @@ public class Programa {
 				boolean[][] possiveisMovimentos = partidaXadrez.movimentosPossiveis(origem);
 				UI.limparTela();
 				UI.imprimirTabuleiro(partidaXadrez.getPecas(), possiveisMovimentos);
-				
-				
 				
 				System.out.println();
 				System.out.print("Destino: ");

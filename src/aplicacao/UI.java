@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import xadrez.Cor;
+import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
@@ -48,6 +49,13 @@ public class UI {
 
 		}
 	}
+	
+	public static void imprimirPartida(PartidaXadrez partidaXadrez) {
+		imprimirTabuleiro(partidaXadrez.getPecas());
+		System.out.println();
+		System.out.println("Turno: " + partidaXadrez.getTurno());
+		System.out.println("Aguardando o jogador: " + partidaXadrez.getJogadorAtual());
+	}
 
 	public static void imprimirTabuleiro(PecaXadrez[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) { // Esta sendo utilizado length em consideracao de uma matriz quadrada
@@ -78,7 +86,7 @@ public class UI {
 		if (peca == null) {
 			System.out.print("-" + ANSI_RESETE);
 		} else {
-			if (peca.getCor() == Cor.BRANCO) {
+			if (peca.getCor() == Cor.AZUL) {
 				System.out.print(ANSI_AZUL + peca + ANSI_RESETE);
 			} else {
 				System.out.print(ANSI_VERMELHO + peca + ANSI_RESETE);
